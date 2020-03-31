@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<title>Lista de Veículos</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+		rel="stylesheet"/>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+		rel="stylesheet"/>
+	</head>
+	<body>		
+		<div class="panel panel-default" style="margin: 20px">
+            <div class="panel-heading">
+            	<div class='panel-heading text-center'>
+            	<h1 class="panel-title">Lista de veículos</h1>
+            	</div>
+            </div>
+            <div class="panel-body">
+ 				<form class="form-inline" method="POST" th:object="${veiculo}" th:action="@{/veiculos}" style="margin: 20px 0">
+                    <div class="form-row">
+                        <div class="col-md-8">
+                        	<input type="text" class="form-control" placeholder="Fabricante" th:field="*{fabricante}"/>
+                        	<input type="text" class="form-control" placeholder="Modelo" th:field="*{modelo}"/>
+                        	<input type="text" class="form-control" placeholder="anoFabricacao" th:field="*{anoFabricacao}"/>
+                        	<input type="text" class="form-control" placeholder="anoModelo" th:field="*{anoModelo}"/>
+                        	<input type="text" class="form-control" placeholder="valor" th:field="*{valor}"/>
+                        	<button type="submit" class="btn btn-primary Right align">Incluir veículo</button>                   
+                        </div>                                              
+                    </div>
+                </form>           
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fabricante</th>
+                            <th>Modelo</th>
+                            <th>Ano Fab.</th>
+                            <th>Ano Mod.</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="veiculo : ${veiculos}">
+                            <td th:text="${veiculo.fabricante}"></td>
+                            <td th:text="${veiculo.modelo}"></td>
+                            <td th:text="${veiculo.anoFabricacao}"></td>
+                            <td th:text="${veiculo.anoModelo}"></td>
+                            <td th:text="${veiculo.valor}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>		
+	</body>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</html>
